@@ -42,9 +42,9 @@ function makeHtmlBoard() {
 
   // TODO: add comment for this code
   // makes the different rows and cells for the board
-  for (var y = 0; y < HEIGHT; y++) {
+  for (let y = 0; y < HEIGHT; y++) {
     const row = document.createElement("tr");
-    for (var x = 0; x < WIDTH; x++) {
+    for (let x = 0; x < WIDTH; x++) {
       const cell = document.createElement("td");
       cell.setAttribute("id", `${y}-${x}`);
       row.append(cell);
@@ -67,6 +67,8 @@ function placeInTable(y, x) {
   const piece = document.createElement('div');
   piece.classList.add('piece')
   piece.classList.add('p' + currPlayer);
+  const dropPiece = document.getElementById(`${y}-${x}`)
+  dropPiece.append(piece);
 
 
 
