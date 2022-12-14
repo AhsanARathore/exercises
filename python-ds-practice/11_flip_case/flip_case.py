@@ -15,8 +15,10 @@ def flip_case(phrase, to_swap):
 
     for letter in phrase:
         if to_swap.lower() == letter.lower():
-
-            lst.append(letter.swapcase())
+            if letter.islower():
+                lst.append(letter.upper())
+            else:
+                lst.append(letter.lower())
 
         else:
             lst.append(letter)
