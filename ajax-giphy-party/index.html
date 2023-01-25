@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Giphy Party!</title>
+
+    <style>
+      * {
+        text-align: center;
+      }
+
+      body {
+        background-color: darksalmon;
+      }
+
+      h1 {
+        font-size: 60px;
+        font-family: fantasy;
+      }
+      #remove {
+        margin: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Giphy Party</h1>
+
+    <form action="input">
+      <input type="text" id="search" name="search" placeholder="Search Term" />
+      <input type="submit" id="submit" name="submitSearch" />
+    </form>
+    <button id="remove">Remove Images</button>
+
+    <div id="gif"></div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
