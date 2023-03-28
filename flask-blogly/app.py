@@ -2,7 +2,7 @@
 
 from flask import Flask, request, render_template, redirect, flash, session
 from flask_debugtoolbar import DebugToolbarExtension
-from models import db, connect_db, User
+from models import db, connect_db, User, Post
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///blogly'
@@ -60,7 +60,28 @@ def edit_user(user_id):
         user.image_url = request.form['image_url']
         db.session.add(user)
         db.session.commit()
-        return redirect('/')
+        return redirect(f'/{user_id}')
     else:
         user = User.query.get_or_404(user_id)
         return render_template("edit_user.html", user=user)
+
+@app.route('/<int:user_id>/posts/new', methods=["POST", "GET"])
+def new_post(user_id):
+
+    if request.method == "POST":
+        user = User.query.get_or_404(user_id)
+        new_post = Post(
+        title = request.form["title"],
+        content = request.form["content"],
+        user=user)
+        db.session.add(new_post)
+        db.session.commit()
+        return redirect(f'/{user_id}')
+    else:
+        user = User.query.get_or_404(user_id)
+        return render_template("new_post.html", user=user)
+    
+@app.route('/posts/<int:post_id>')
+def show_post(post_id):
+    post = Post.query.get_or_404(post_id)
+    return render_template("post_page.html", post=post)

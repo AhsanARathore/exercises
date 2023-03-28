@@ -20,6 +20,15 @@
       </button>
     </form>
 
+    <h2>Posts</h2>
+    <ul>
+      {% for post in user.posts %}
+      <li><a href="/post/{{post.id}}">{{post.title}}</a></li>
+      {% endfor %}
+    </ul>
+
+    <div><a href="/{{ user.id }}/posts/new">New Post</a></div>
+
     <a href="/">Go Back</a>
   </body>
 </html>
