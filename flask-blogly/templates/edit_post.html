@@ -5,20 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/static/app.css" />
-    <title>New Post</title>
+    <title>Edit Post</title>
   </head>
   <body>
-    <h1>New Post for {{ user.full_name }}</h1>
-    <form action="/{{user.id}}/posts/new" method="POST">
-      <input type="text" name="title" placeholder="title of post" />
+    <h1>edit {{post.title}} from {{user.full_name}}</h1>
+    <form method="POST">
+      <input
+        type="text"
+        name="title"
+        placeholder="title of post"
+        value="{{post.title}}"
+      />
       <input
         type="text"
         name="content"
-        placeholder="post contents"
+        placeholder="content of post"
+        value="{{post.content}}"
         id="content"
       />
-      <button>Add Post</button>
-
       <div class="form-check">
         {% for tag in tags %}
         <div>
@@ -27,6 +31,14 @@
             type="checkbox"
             value="{{ tag.id }}"
             id="tag_{{ tag.id }}"
+            {%
+            if
+            tag
+            in
+            post.tags
+            %}checked{%
+            endif
+            %}
             name="tags"
           />
           <label class="form-check-label" for="tag_{{ tag.id }}">
@@ -35,8 +47,12 @@
         </div>
         {% endfor %}
       </div>
+
+      <button>Submit Changes</button>
     </form>
 
-    <a href="/{{user_id}}">Go Back</a>
+    <div>
+      <a href="/post/{{post_id}}">Cancel</a>
+    </div>
   </body>
 </html>

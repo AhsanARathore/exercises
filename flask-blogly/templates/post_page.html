@@ -4,10 +4,33 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/app.css" />
     <title>post page</title>
   </head>
   <body>
     <h1>{{post.title}} from {{user.full_name}}</h1>
     <p>{{post.content}}</p>
+
+    {% if post.tags %}
+    <p>
+      <b>Tags:</b>
+      {% for tag in post.tags %}
+      <a href="/tags/{{ tag.id }}">{{ tag.name }}</a>
+      {% endfor %}
+    </p>
+    {% endif %}
+
+    <form>
+      <button formaction="/post/{{ post.id }}/edit" formmethod="'GET">
+        EDIT
+      </button>
+      <button formaction="/post/{{ post.id }}/delete" formmethod="POST">
+        DELETE
+      </button>
+    </form>
+
+    <div>
+      <a href="/{{post.user_id}}">go back</a>
+    </div>
   </body>
 </html>
