@@ -1,0 +1,35 @@
+{% extends 'base.html' %} {% block title %}Add Pet{% endblock %} {% block
+content %}
+
+<div class="row">
+  <div class="col"></div>
+  <div class="col-6">
+    <h2 style="text-align: center">{{pet.name}}</h2>
+    <img class="img-thumbnail" src="{{ pet.photo_url }}" />
+
+    <form method="POST">
+      {{form.hidden_tag()}} {% for field in form if field.widget.input_type !=
+      'hidden' %} {% if field.widget.input_type != "checkbox" %}
+
+      <p>{{field.label}} {{field(class ="form-control")}}</p>
+
+      {% else %}
+
+      <p>{{field.label}} {{field(class ="")}}</p>
+
+      {% endif %} {% endfor %}
+      <button class="btn btn-primary">Submit</button>
+      <button
+        class="btn btn-danger"
+        formaction="/pets/{{ pet.id }}/delete"
+        formmethod="POST"
+      >
+        DELETE PET
+      </button>
+      <a href="/pets" class="btn btn-warning">Cancel</a>
+    </form>
+  </div>
+  <div class="col"></div>
+
+  {% endblock %}
+</div>

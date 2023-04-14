@@ -1,0 +1,20 @@
+{% extends 'base.html' %} {% block title %}Pet Index{% endblock %} {% block
+content %}
+<div>
+  <h2 style="text-align: center">List of Pets!</h2>
+  <div style="text-align: center">
+    <a class="btn btn-primary" href="/new_pet" style="margin-bottom: 20px"
+      >Add pet</a
+    >
+  </div>
+
+  {% for pet in pets %}
+  <div class="col-2" style="float: left; margin: 6px">
+    <img class="img-thumbnail" src="{{ pet.photo_url }}" />
+    <a href="/pets/{{pet.id}}">{{ pet.name }}</a>
+    {% if pet.available %} <b> is available!</b> {% endif %}
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock %}
