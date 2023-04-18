@@ -1,0 +1,40 @@
+{% extends 'base.html' %} {% block title %}Cupcake Index{% endblock %} {% block
+content %}
+<div class="row">
+  <div class="col"></div>
+
+  <div class="col-2">
+    <h2 style="text-align: center">Cupcake Index!</h2>
+
+    <ul id="cupcakes-list"></ul>
+  </div>
+
+  <div class="col">
+    <h3 style="text-align: center">Make Cupcake!</h3>
+    <form style="text-align: center" id="new-cupcake">
+      <div>
+        <label for="form-flavor">Flavor: </label>
+        <input name="flavor" id="form-flavor" />
+      </div>
+
+      <div>
+        <label for="form-size">Size: </label>
+        <input name="size" id="form-size" />
+      </div>
+
+      <div>
+        <label for="form-rating">Rating: </label>
+        <input type="number" name="rating" id="form-rating" />
+      </div>
+
+      <div>
+        <label for="form-image">Image: </label>
+        <input name="image" id="form-image" />
+      </div>
+
+      <button>Add!</button>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
